@@ -1,49 +1,109 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - learnify</title>
+    <title>@ViewData["Title"] - Learnify</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/learnify.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">learnify</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
+            <div class="container">
+                <div class="col-8">
+                    <a class="navbar-brand text-black" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="~/images/logo.png" alt="">
+                    </a>
+                    <button class="navbar-toggler btn-primary" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+
+                <div class="col-4 collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link active text-secondary hover-text-decoration-underline" aria-current="page" href="#">Resources</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-secondary" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary"asp-area="" asp-controller="User" asp-action="GetUser">Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="#">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="bg-success rounded-2 border-success p-0">
+                                <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">Sign up</a>
+                            </button>
                         </li>
                     </ul>
                 </div>
+@* 
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> *@
+                
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container py-4">
+        <main role="main" class="m-4">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer p-4 text-muted p-2">
         <div class="container">
-            &copy; 2024 - learnify - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row gap-4 rounded-2 border-success p-0">
+
+            <div class="col">
+                <h2>Learnify</h2>
+                <p>Collaborative compilation of free,quality learning materials</p>
+                <div class="d-flex flex-row gap-2">
+                    <a href="">Github</a>
+                    <a href="">Discord</a>
+                    <a href="">Twitter</a>
+                </div>
+            </div>
+
+            <div class="col d-flex flex-column">
+                <h4>Links</h4>
+                <a href="">Resources</a> 
+                <a href="">About</a>
+                <a href="">Community</a>
+            </div>
+
+            <div class="col d-flex flex-column">
+                <h4>Support</h4>
+                <a href="">FAQ</a>
+                <a href="">Contribute</a>
+                <a href="">Contact us</a>
+            </div>
+
+            <div class="col d-flex flex-column">
+                <h4>Legal</h4>
+                <a href="">Terms</a>
+                <a href="">Privacy</a>
+            </div>
+        </div>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

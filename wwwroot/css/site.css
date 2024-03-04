@@ -1,11 +1,30 @@
-html {
-  font-size: 14px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+  font-size: 16px;
+  text-decoration: none;
+  font-weight:400;
+  font-family:'Inter','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a{
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
+}
+.header-text{
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.offer{
+  min-height: 80vh;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -17,6 +36,3 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
