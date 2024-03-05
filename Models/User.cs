@@ -1,9 +1,8 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 public class User {
     [Key]
-    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
     [Required]
     [MinLength(3, ErrorMessage ="Username must be shorter than 3 letters")]
     [MaxLength(10, ErrorMessage ="Username must not be longer than 10 letters.")]
@@ -17,4 +16,6 @@ public class User {
     public string? Password {get; set;}
     public string? FullName { get; set; }
     public DateTime CreatedAt { get; set;}
+
+    public List<Resource>? Resources {get; set;}
 }

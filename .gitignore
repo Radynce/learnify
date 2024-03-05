@@ -4,3 +4,4 @@
 appsettings.json
 learnify.csproj
 .fake
+/Migrations

@@ -15,4 +15,9 @@ public class Resource{
     public string? Field { get; set; }
     [MaxLength(3, ErrorMessage ="Only maximum of 3 tags are allowed.")]
     public List<string>? Tags { get; set; }
+
+    public Guid UserId {get; set;}
+
+//relations
+    public User? User {get; set;}
 }
