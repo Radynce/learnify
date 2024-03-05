@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container sign-up-container">
+    <div class="register-header">
+        <h2 class="text-center">Sign Up Now</h2>
+        <p class="text-center">Or <span><a href="" class="text-decoration-underline text-secondary fw-medium">sign into
+                    your existing account.</a></span></p>
+    </div>
+    <div class="form-container w-75 m-auto outlined">
+        <form class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email </label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password">
+            </div>
+
+
+            <div class="terms">
+                <p class="text-center text-secondary ">By signing up you agree to <span
+                        class="text-decoration-underline fw-medium">all terms and privacy conditions.</span></p>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<div class="container my-4 py-4 lh-1">
+    <h2 class="text-center">Support Us!</h2>
+
+    <div class="w-50 m-auto text-center d-flex me-auto">
+        <p class="fs-6 lh-base">Learnify is open-source project initialized as a college project, but it has a lot of potential
+            for students or anyone who wants to find better resources. Your contribution to maitain this project is
+            highly valued in our community.</p>
+    </div>
+
+    <div class="buttons d-flex gap-4 justify-content-center">
+        <a href="https://github.com/kshetritej/learnify/blob/main/Contribution.md" target="_blank">
+            <button class="btn btn-secondary">
+                View Contribution.md
+            </button></a>
+
+        <a href="https://github.com/kshetritej/learnify" target="_blank">
+            <button class="btn btn-success">
+                Contribute
+            </button>
+        </a>
+    </div>
+</div>

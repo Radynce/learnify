@@ -1,33 +1,27 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using learnify.Models;
 
-[Route("/[controller]")]
+namespace learnify.Controllers;
+
 public class UserController : Controller
 {
-    private readonly AppDbContext? _db;
+    private readonly ILogger<UserController> _logger;
 
-    public UserController(AppDbContext db)
+    public UserController(ILogger<UserController> logger)
     {
-        _db = db;
+        _logger = logger;
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(Guid Id)
+    public IActionResult Register()
     {
-        return View(await _db.Users.ToListAsync());
+        return View();
     }
 
-    [HttpPost("{addUser}")]
-    public async Task<ActionResult<User>> RegisterUser(User user)
-    {
-        user.Username = "kshetritej";
-        user.Email = "email@kshetritej.com.np";
-        user.FullName = "Tej Bahadur Gharti Kshetri";
-        user.Password = "jagadamba@23";
-        await _db.Users.AddAsync(user);
-        await _db.SaveChangesAsync();
-        Console.WriteLine("user added");
-        return View(user);
 
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
