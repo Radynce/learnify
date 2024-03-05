@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Resources";
+}
+<div class="container">
+    <h1 class="text-center mb-4">All Resources</h1>
+    @for (var i = 0; i < 3; i++)
+    {
+        <div class="row justify-content-center">
+            <div class="card mb-3" style="max-width: 720px;">
+                <div class="row g-0">
+
+                    <div class="col-md-8 ">
+                        <div class="card-body">
+                            <h5 class="card-title">Deep Dive into Modern Web Development</h5>
+                            <p class="card-text">Learn React, Redux, Node.js, MongoDB, GraphQL and TypeScript in one go!
+                                This course will introduce you to modern JavaScript-based web development. The main focus is
+                                on building single page applications with ReactJS that use REST APIs built with Node.js.</p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-4 row align-items-center justify-items-center ">
+                        <a href="https://fullstackopen.com/en/">
+                            <button class="px-4 btn btn-outline-success mr-4">
+                                View &nbsp; <i class="bi bi-box-arrow-up-right"></i>
+                            </button></a>
+                    </div>
+                </div>
+
+                <div class="container gap-4 mb-4 mt-2 row">
+                    <button class="col-3 btn btn-outline-warning field rounded-pill">
+                        <p class="card-text"><small class="text-body-secondary">Computer Science</small></p>
+                    </button>
+                    <div class="tags col-7" >
+                        @for (var r = 0; r < 3; r++)
+                        {
+                            <div class="btn px-2 py-1 border text-align-center bg-none border-danger rounded-pill m-autos text-black">
+                                <p class="m-auto fw-medium">HTML</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
