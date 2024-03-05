@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<div class="container sign-in-container">
+    <div class="login-header">
+        <h2 class="text-center">Sign in to your account</h2>
+        <p class="text-center">Or <span><a href="" class="text-decoration-underline text-secondary fw-medium">sign up
+                    for a new account</a></span></p>
+    </div>
+    <div class="form-container w-75 m-auto outlined">
+        <form class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email </label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <div class="remember-and-forget d-flex justify-content-between">
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember-user">
+                    <label class="form-check-label" for="remember-user">Remember me</label>
+                </div>
+
+                <div class="forget-pwd">
+                    <p class="fw-semibold">Forget Password?</p>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">Sign in</button>
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<div class="container my-4 py-4 lh-1">
+    <h2 class="text-center">Support Us!</h2>
+
+    <div class="w-50 m-auto text-center d-flex me-auto">
+        <p class="fs-6 lh-base">Learnify is open-source project initialized as a college project, but it has a lot of
+            potential
+            for students or anyone who wants to find better resources. Your contribution to maitain this project is
+            highly valued in our community.</p>
+    </div>
+
+    <div class="buttons d-flex gap-4 justify-content-center">
+        <a href="https://github.com/kshetritej/learnify/blob/main/Contribution.md" target="_blank">
+            <button class="btn btn-secondary">
+                View Contribution.md
+            </button></a>
+
+        <a href="https://github.com/kshetritej/learnify" target="_blank">
+            <button class="btn btn-success">
+                Contribute
+            </button>
+        </a>
+    </div>
+</div>
