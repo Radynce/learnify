@@ -1,19 +1,20 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using learnify.Models;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.Mapping;
 
 namespace learnify.Controllers;
 
 public class UserController : Controller
 {
-    private readonly ILogger<UserController> _logger;
+    private readonly AppDbContext _context;
 
-    public UserController(ILogger<UserController> logger)
+    public UserController(AppDbContext context)
     {
-        _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Register()
+    public IActionResult RegisterForm()
     {
         return View();
     }
@@ -21,7 +22,21 @@ public class UserController : Controller
         return View();
     }
     public ActionResult Login(){
-        return View(nameof(Register));
+        return View(nameof(RegisterForm));
+    }
+    [HttpPost]
+    public IActionResult Register([FromForm] User user){
+        try
+        {
+            user.CreatedAt = DateTime.UtcNow;
+           _context.Users.Add(user);
+           _context.SaveChanges();
+           return RedirectToAction(nameof(LoginForm));
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
 
