@@ -1,7 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using learnify.Models;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.Mapping;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace learnify.Controllers;
 
@@ -21,8 +22,20 @@ public class UserController : Controller
     public ActionResult LoginForm(){
         return View();
     }
-    public ActionResult Login(){
-        return View(nameof(RegisterForm));
+
+    [HttpPost]
+    public ActionResult Login([FromForm]User user){
+        var dbUser = _context.Users.FirstOrDefault(u=> u.Email == user.Email);
+
+        if(dbUser == null){
+            TempData["Error"] = "Credentials are wrong. Try Again!";
+            return RedirectToAction(nameof(LoginForm));
+        }
+        if(dbUser.Password != user.Password){
+            TempData["Error"] = "Password Wrong?";
+            return RedirectToAction(nameof(LoginForm));
+        }
+        return RedirectToAction("Index","Home");
     }
     [HttpPost]
     public IActionResult Register([FromForm] User user){
@@ -46,3 +59,4 @@ public class UserController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+
