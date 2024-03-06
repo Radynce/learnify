@@ -35,6 +35,7 @@ public class UserController : Controller
             TempData["Error"] = "Password Wrong?";
             return RedirectToAction(nameof(LoginForm));
         }
+        TempData["Success"] = "I'd say God bless you, but it looks like he already did.";
         return RedirectToAction("Index","Home");
     }
     [HttpPost]

@@ -12,7 +12,7 @@
     <div class="form-container w-75 m-auto outlined">
         @if (TempData["Error"] != null)
         {
-            <div class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>
+            <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>
         }
         <form asp-action="Login" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
 

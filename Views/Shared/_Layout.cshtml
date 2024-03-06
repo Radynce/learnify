@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using learnify.Models;
+@inject SignInManager<IdentityUser> SignInManager;
+@inject SignInManager<IdentityUser> UserManager;
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,18 +43,24 @@
                             <a class="nav-link text-secondary" href="https://discord.gg/y5nnRGfn" target="_blank">Community</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" asp-asp-area="" asp-controller="User" asp-action="LoginForm" >Sign in</a>
-                        </li>
-                         <li class="nav-item">
                             <a class="nav-link text-secondary"  target="_blank" href="https://github.com/kshetritej/learnify"><i class="p-2 bi bi-github"></i></a>
                         </li>
 
-
+                        @if (SignInManager.IsSignedIn(User)){
+                        <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Manage" asp-action="Index">Profile</a>
+                        </li>
+                        }
+                        else{
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-asp-area="" asp-controller="User" asp-action="LoginForm" >Sign in</a>
+                        </li>
                         <li class="nav-item ">
                             <button type="button" class="bg-success rounded-2 border-success p-0">
                                 <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="RegisterForm">Sign up</a>
                             </button>
                         </li>
+                        }
                     </ul>
                 </div>
 @* 

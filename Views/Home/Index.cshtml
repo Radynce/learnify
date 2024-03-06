@@ -1,15 +1,25 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = " One stop platform for world of knowledge.";
 }
 
 
+@if (TempData["Success"] != null)
+{
+    ViewData["Success"] = TempData["Success"];
+    TempData.Remove("Success");
+
+    <div id="alert-dialog" class="alert alert-success">@ViewData["Success"]</div>
+}
+
 <div class="header-text text-center gap-3">
+
     <h1 class="display-2 mt-4">Empower your <span class="text-primary display-2 fw-bold">Learning</span></br> Journey
         with
         Learnify</h1>
     <p class="fs-3 p-4">A one stop platform for world of knowledge </br> maintened by community for community.</p>
     <button class="btn btn-success py-2 px-4 mb-4">
-        <a class="text-decoration-none text-white fs-4" asp-area="" asp-controller="Resource" asp-action="ViewResource">Explore
+        <a class="text-decoration-none text-white fs-4" asp-area="" asp-controller="Resource"
+            asp-action="ViewResource">Explore
             Resources</a>
     </button>
 </div>
@@ -99,25 +109,27 @@
     </button>
 
     <div class="container my-4 py-4">
-      <h2>Support Us!</h2> 
+        <h2>Support Us!</h2>
 
-      <div class="w-50 m-auto text-center d-flex me-auto">
-       <p class="fs-6">Learnify is open-source project initialized as a college project, but it has a lot of potential for students or anyone who wants to find better resources. Your contribution to maitain this project is highly valued in our community.</p>
-      </div>
+        <div class="w-50 m-auto text-center d-flex me-auto">
+            <p class="fs-6">Learnify is open-source project initialized as a college project, but it has a lot of
+                potential for students or anyone who wants to find better resources. Your contribution to maitain this
+                project is highly valued in our community.</p>
+        </div>
 
-      <div class="buttons">
-        <a href="https://github.com/kshetritej/learnify/blob/main/Contribution.md" target="_blank">
-        <button class="btn btn-secondary">
-            View Contribution.md
-        </button></a>
+        <div class="buttons">
+            <a href="https://github.com/kshetritej/learnify/blob/main/Contribution.md" target="_blank">
+                <button class="btn btn-secondary">
+                    View Contribution.md
+                </button></a>
 
-        <a href="https://github.com/kshetritej/learnify" target="_blank">
-        <button class="btn btn-success">
-            Contribute
-        </button>
-        </a>
-      </div>
-     </div>
+            <a href="https://github.com/kshetritej/learnify" target="_blank">
+                <button class="btn btn-success">
+                    Contribute
+                </button>
+            </a>
+        </div>
+    </div>
 
 
 </div>
