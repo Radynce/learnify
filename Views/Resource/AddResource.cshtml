@@ -1,49 +1,47 @@
 @{
     ViewData["Title"] = "AddResource";
 }
+@model learnify.Models.Resource;
 
 <div class="container">
     <div class="addRes-header">
         <h2 class="text-center">Add new resource</h2>
         <p class="text-center w-50 m-auto">Help the community and maintainers. Please don't add resources which already
-            exists - search once before adding one.</p>
+            exists - search once beasp-fore adding one.</p>
     </div>
     <div class="form-container w-75 m-auto outlined">
-        <form class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
+        <form asp-action="SubmitResource" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
 
             <div class="mb-3">
-                <label for="resource-name" class="form-label">Title</label>
-                <input type="text" class="form-control" id="resource-name" aria-describedby="resourceTitle"
+                <label asp-for="Name" class="form-label">Title</label>
+                <input asp-for="Name" type="text" class="form-control" id="Name" aria-describedby="resourceTitle"
                     placeholder="Responsive Web Design">
             </div>
             <div class="mb-3">
-                <label for="resource-link" class="form-label">Link</label>
-                <input type="text" class="form-control" id="resource-link" aria-describedby="resourceLink"
+                <label asp-for="Link" class="form-label">Link</label>
+                <input  asp-for="Link" type="text" class="form-control" id="Link" aria-describedby="resourceLink"
                     placeholder="https://www.freecodecamp.org/learn/2022/responsive-web-design">
             </div>
-
-
-
             <div class="mb-3">
-                <label for="resource-desc" class="form-label">Description</label>
+                <label asp-for="Description" class="form-label">Description</label>
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Breif information about the resource." id="resouce-desc"
+                    <textarea asp-for="Description" class="form-control" placeholder="Breif information about the resource." id="Description"
                         style="height: 100px"></textarea>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="resource-field" class="form-label">Field</label>
-                <input type="text" class="form-control" id="resource-field" aria-describedby="field"
+                <label asp-for="Field" class="form-label">Field</label>
+                <input asp-for="Field" type="text" class="form-control" id="Field" aria-describedby="field"
                     placeholder="Computer Science">
             </div>
 
             <div class="mb-3">
-                <label for="resource-tags" class="form-label">Tags <span class="fs-6 text-secondary">(comma
+                <label asp-for="Tags" class="form-label">Tags <span class="fs-6 text-secondary">(comma
                         seperated)</span></label>
-                <input type="text" class="form-control" id="resource-tags" aria-describedby="tags"
+                <input asp-for="Tags" type="text" class="form-control" id="Tags" aria-describedby="tags"
                     placeholder="web dev, IT, CS">
             </div>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit"  class="btn btn-success">Submit</button>
         </form>
 
 

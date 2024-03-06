@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+namespace learnify.Models;
 
 public class User {
     [Key]

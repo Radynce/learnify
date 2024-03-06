@@ -17,8 +17,11 @@ public class UserController : Controller
     {
         return View();
     }
-    public ActionResult Login(){
+    public ActionResult LoginForm(){
         return View();
+    }
+    public ActionResult Login(){
+        return View(nameof(Register));
     }
 
 

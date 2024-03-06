@@ -1,32 +1,33 @@
 @{
     ViewData["Title"] = "Sign in";
 }
+@model learnify.Models.User;
 
 <div class="container sign-in-container">
     <div class="login-header">
         <h2 class="text-center">Sign in to your account</h2>
         <p class="text-center">Or <span><a href="" class="text-decoration-underline text-secondary fw-medium">sign up
-                    for a new account</a></span></p>
+                    asp-for a new account</a></span></p>
     </div>
     <div class="form-container w-75 m-auto outlined">
-        <form class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
+        <form asp-action="Login" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
 
             <div class="mb-3">
-                <label for="email" class="form-label">Email </label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <label asp-for="Email" class="form-label">Email </label>
+                <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input type="password" asp-for="Password" class="form-control" id="password">
             </div>
-            <div class="remember-and-forget d-flex justify-content-between">
+            <div class="remember-and-asp-forget d-flex justify-content-between">
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="remember-user">
                     <label class="form-check-label" for="remember-user">Remember me</label>
                 </div>
 
-                <div class="forget-pwd">
+                <div class="asp-forget-pwd">
                     <p class="fw-semibold">Forget Password?</p>
                 </div>
 
@@ -47,7 +48,7 @@
     <div class="w-50 m-auto text-center d-flex me-auto">
         <p class="fs-6 lh-base">Learnify is open-source project initialized as a college project, but it has a lot of
             potential
-            for students or anyone who wants to find better resources. Your contribution to maitain this project is
+            asp-for students or anyone who wants to find better resources. Your contribution to maitain this project is
             highly valued in our community.</p>
     </div>
 

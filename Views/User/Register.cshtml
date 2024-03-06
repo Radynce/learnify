@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Register";
 }
+@model learnify.Models.User;
 
 <div class="container sign-up-container">
     <div class="register-header">
@@ -9,27 +10,27 @@
                     your existing account.</a></span></p>
     </div>
     <div class="form-container w-75 m-auto outlined">
-        <form class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
+        <form asp-action="LoginForm" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" aria-describedby="nameHelp">
+                <label asp-for="FullName" class="form-label">Name</label>
+                <input type="text" asp-for="FullName" class="form-control" id="name" aria-describedby="nameHelp">
             </div>
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+                <label asp-for="Username" class="form-label">Username</label>
+                <input type="text" asp-for="Username" class="form-control" id="username" aria-describedby="usernameHelp">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email </label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <label asp-for="Email" class="form-label">Email </label>
+                <input type="email" asp-for="Email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input type="password" asp-for="Password" class="form-control" id="password">
             </div>
             <div class="mb-3">
-                <label for="confirm-password" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm-password">
+                <label asp-for="Password" class="form-label">Confirm Password</label>
+                <input type="password"  asp-for="Password" class="form-control" id="confirm-password">
             </div>
 
 
@@ -51,7 +52,7 @@
 
     <div class="w-50 m-auto text-center d-flex me-auto">
         <p class="fs-6 lh-base">Learnify is open-source project initialized as a college project, but it has a lot of potential
-            for students or anyone who wants to find better resources. Your contribution to maitain this project is
+            asp-for students or anyone who wants to find better resources. Your contribution to maitain this project is
             highly valued in our community.</p>
     </div>
 

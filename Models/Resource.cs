@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
+namespace learnify.Models;
 public class Resource{
     [Key]
     public Guid Id { get; set; }
