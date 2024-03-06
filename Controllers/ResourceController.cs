@@ -18,6 +18,10 @@ public class ResourceController : Controller
         return View();
     }
 
+    public IActionResult AddResource(){
+        return View();
+    }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

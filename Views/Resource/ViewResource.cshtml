@@ -2,7 +2,13 @@
     ViewData["Title"] = "Resources";
 }
 <div class="container">
-    <h1 class="text-center mb-4">All Resources</h1>
+    <div class="d-flex flex-row justify-content-between heaing-and-add-btn m-auto" style="max-width: 720px;">
+        <h1 class="text-center mb-4">All Resources</h1>
+        <a asp-controller="Resource" asp-action="AddResource"><button class="btn btn-outline-success mb-4"  >
+            Add New Resource <i class="bi bi-plus-circle"></i>
+        </button></a>
+        
+    </div>
     @for (var i = 0; i < 3; i++)
     {
         <div class="row justify-content-center">
@@ -43,4 +49,5 @@
 
         </div>
     }
+
 </div>
