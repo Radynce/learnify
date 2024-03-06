@@ -4,6 +4,7 @@ using learnify.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace learnify.Controllers;
 
 public class UserController : Controller
@@ -19,33 +20,37 @@ public class UserController : Controller
     {
         return View();
     }
-    public ActionResult LoginForm(){
+    public ActionResult LoginForm()
+    {
         return View();
     }
 
     [HttpPost]
-    public ActionResult Login([FromForm]User user){
-        var dbUser = _context.Users.FirstOrDefault(u=> u.Email == user.Email);
+    public ActionResult Login([FromForm]User user)
+    {
+        var dbUser = _context.Users.FirstOrDefault(u => u.Email == user.Email);
 
-        if(dbUser == null){
+        if (dbUser == null)
+        {
             TempData["Error"] = "Credentials are wrong. Try Again!";
             return RedirectToAction(nameof(LoginForm));
         }
-        if(dbUser.Password != user.Password){
+        if (dbUser.Password != user.Password)
+        {
             TempData["Error"] = "Password Wrong?";
             return RedirectToAction(nameof(LoginForm));
         }
-        TempData["Success"] = "I'd say God bless you, but it looks like he already did.";
-        return RedirectToAction("Index","Home");
+        return RedirectToAction("Index", "Home");
     }
     [HttpPost]
-    public IActionResult Register([FromForm] User user){
+    public IActionResult Register([FromForm] User user)
+    {
         try
         {
             user.CreatedAt = DateTime.UtcNow;
-           _context.Users.Add(user);
-           _context.SaveChanges();
-           return RedirectToAction(nameof(LoginForm));
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(LoginForm));
         }
         catch (System.Exception)
         {
