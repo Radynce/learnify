@@ -22,7 +22,7 @@ namespace learnify.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Resource", b =>
+            modelBuilder.Entity("learnify.Models.Resource", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace learnify.Migrations
                     b.ToTable("Resources");
                 });
 
-            modelBuilder.Entity("User", b =>
+            modelBuilder.Entity("learnify.Models.User", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -77,6 +77,10 @@ namespace learnify.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -87,9 +91,9 @@ namespace learnify.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Resource", b =>
+            modelBuilder.Entity("learnify.Models.Resource", b =>
                 {
-                    b.HasOne("User", "User")
+                    b.HasOne("learnify.Models.User", "User")
                         .WithMany("Resources")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -98,7 +102,7 @@ namespace learnify.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("User", b =>
+            modelBuilder.Entity("learnify.Models.User", b =>
                 {
                     b.Navigation("Resources");
                 });

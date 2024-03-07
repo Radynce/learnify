@@ -10,6 +10,8 @@ public class User {
     public string? Username {get; set;}
 
     [Required]
+    public string? UserType { get; set;}
+    [Required]
     [EmailAddress(ErrorMessage ="Invalid Email")]
     public string? Email {get; set;}
     [Required]
