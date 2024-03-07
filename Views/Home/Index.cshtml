@@ -3,12 +3,11 @@
 }
 
 
-@if (TempData["Success"] != null)
+@if (TempData["LoggedInUser"] != null)
 {
-    ViewData["Success"] = TempData["Success"];
-    TempData.Remove("Success");
+    string message = "I'd say God bless you, but it looks like He already did.";
 
-    <div id="alert-dialog" class="alert alert-success">@ViewData["Success"]</div>
+    <div id="alert-dialog" class="alert alert-success">@message</div>
 }
 
 <div class="header-text text-center gap-3">

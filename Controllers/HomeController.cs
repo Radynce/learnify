@@ -15,7 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        string LoggedInUser = TempData["LoggedInUser"] as string;
+        string? LoggedInUser = ViewData["LoggedInUser"] as string;
         if(TempData != null){
             ViewBag.LoggedInUser = LoggedInUser;
         }

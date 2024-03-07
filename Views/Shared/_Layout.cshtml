@@ -47,11 +47,11 @@
                             <a class="nav-link text-secondary" target="_blank"
                                 href="https://github.com/kshetritej/learnify"><i class="p-2 bi bi-github"></i></a>
                         </li>
-                        @if (ViewBag.LoggedInUser != null)
+                        @if (ViewData["LoggedInUser"] != null)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Manage"
-                                    asp-action="Index">@ViewBag.LoggedInUser</a>
+                                    asp-action="Index">@ViewData["LoggedInUser"]</a>
                             </li>
                         }
                         else

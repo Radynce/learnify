@@ -6,11 +6,13 @@ namespace learnify.Controllers;
 
 public class UserController : Controller
 {
+    private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly AppDbContext _context;
 
-    public UserController(AppDbContext context)
+    public UserController(AppDbContext context, IHttpContextAccessor httpContextAccessor)
     {
         _context = context;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public IActionResult RegisterForm()
@@ -37,12 +39,12 @@ public class UserController : Controller
             TempData["Error"] = "Remember when she said, you are the one.";
             return RedirectToAction(nameof(LoginForm));
         }
-        HttpContext.Session.SetString("User",dbUser.Username);
-        var currUser = TempData["LoggedInUser"] = HttpContext.Session.GetString("User");
-        Console.WriteLine(currUser);
-        Console.WriteLine("Logged In successfully");
+        HttpContext.Session.SetString("User",dbUser?.Username ?? "default");
+        ViewData["LoggedInUser"]   = HttpContext.Session.GetString("User");
         return RedirectToAction("Index", "Home");
     }
+
+
     [HttpPost]
     public IActionResult Register([FromForm] User user)
     {
