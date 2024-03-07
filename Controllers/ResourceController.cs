@@ -18,9 +18,10 @@ public class ResourceController : Controller
 
     public IActionResult AddResource()
     {
-
         return View();
     }
+
+
     [HttpPost]
     public IActionResult SubmitResource([FromForm] Resource resource)
     {

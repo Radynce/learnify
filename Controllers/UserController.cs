@@ -6,13 +6,13 @@ namespace learnify.Controllers;
 
 public class UserController : Controller
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IHttpContextAccessor _httpContext;
     private readonly AppDbContext _context;
-
-    public UserController(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+    [ActivatorUtilitiesConstructor]
+    public UserController(AppDbContext context,IHttpContextAccessor httpContext)
     {
         _context = context;
-        _httpContextAccessor = httpContextAccessor;
+        _httpContext = httpContext;
     }
 
     public IActionResult RegisterForm()
@@ -25,7 +25,7 @@ public class UserController : Controller
     }
 
     [HttpPost]
-    public ActionResult Login([FromForm]User user)
+    public ActionResult Login([FromForm] User user)
     {
         var dbUser = _context.Users.FirstOrDefault(u => u.Email == user.Email);
 
@@ -39,33 +39,35 @@ public class UserController : Controller
             TempData["Error"] = "Remember when she said, you are the one.";
             return RedirectToAction(nameof(LoginForm));
         }
-        HttpContext.Session.SetString("User",dbUser?.Username ?? "default");
-        ViewData["LoggedInUser"]   = HttpContext.Session.GetString("User");
+        TempData["Success"] = "I'd say god bless you, but it looks like he already did.";
+        TempData["LoggedInUser"] = dbUser?.Username ?? "null";
+
+        _httpContext.HttpContext.Session.SetString("User",dbUser?.Username ?? "null");
         return RedirectToAction("Index", "Home");
-    }
+}
 
 
-    [HttpPost]
-    public IActionResult Register([FromForm] User user)
+[HttpPost]
+public IActionResult Register([FromForm] User user)
+{
+    try
     {
-        try
-        {
-            user.CreatedAt = DateTime.UtcNow;
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(LoginForm));
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+        user.CreatedAt = DateTime.UtcNow;
+        _context.Users.Add(user);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(LoginForm));
     }
-
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    catch (System.Exception)
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        throw;
     }
+}
+
+
+[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+public IActionResult Error()
+{
+    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+}
 }
 

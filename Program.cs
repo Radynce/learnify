@@ -9,8 +9,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConfig")));
 builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromHours(24));
-builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
 var app = builder.Build();
 
 

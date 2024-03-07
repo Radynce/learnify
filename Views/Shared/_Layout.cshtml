@@ -1,6 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@using learnify.Models;
+﻿@using learnify.Models;
+@using learnify.Controllers;
 @using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +50,11 @@
                             <a class="nav-link text-secondary" target="_blank"
                                 href="https://github.com/kshetritej/learnify"><i class="p-2 bi bi-github"></i></a>
                         </li>
-                        @if (ViewData["LoggedInUser"] != null)
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("User") != null)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Manage"
-                                    asp-action="Index">@ViewData["LoggedInUser"]</a>
+                                    asp-action="Index">@HttpContextAccessor.HttpContext.Session.GetString("User")</a>
                             </li>
                         }
                         else

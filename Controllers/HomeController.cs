@@ -1,25 +1,15 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using learnify.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace learnify.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
     public IActionResult Index()
     {
-        string? LoggedInUser = ViewData["LoggedInUser"] as string;
-        if(TempData != null){
-            ViewBag.LoggedInUser = LoggedInUser;
-        }
-       return View();
+      return View();
     }
 
     public IActionResult About()

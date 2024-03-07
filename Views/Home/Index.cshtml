@@ -3,11 +3,9 @@
 }
 
 
-@if (TempData["LoggedInUser"] != null)
+@if (TempData["Success"] != null)
 {
-    string message = "I'd say God bless you, but it looks like He already did.";
-
-    <div id="alert-dialog" class="alert alert-success">@message</div>
+    <div id="alert-dialog" class="alert alert-success">@TempData["Success"]</div>
 }
 
 <div class="header-text text-center gap-3">
