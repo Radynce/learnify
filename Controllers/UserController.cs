@@ -8,7 +8,7 @@ public class UserController : Controller
 {
     private readonly IHttpContextAccessor _httpContext;
     private readonly AppDbContext _context;
-    [ActivatorUtilitiesConstructor]
+    [ActivatorUtilitiesConstructor] //solve for multiple constructors
     public UserController(AppDbContext context,IHttpContextAccessor httpContext)
     {
         _context = context;
@@ -43,6 +43,7 @@ public class UserController : Controller
         TempData["LoggedInUser"] = dbUser?.Username ?? "null";
 
         _httpContext.HttpContext.Session.SetString("User",dbUser?.Username ?? "null");
+        _httpContext.HttpContext.Session.SetString("UserId", dbUser?.UserId.ToString());
         return RedirectToAction("Index", "Home");
 }
 

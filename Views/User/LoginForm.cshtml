@@ -14,6 +14,10 @@
         {
             <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>
         }
+        @if (TempData["NotLoggedIn"] != null)
+        {
+            <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["NotLoggedIn"]</div>
+        }
         <form asp-action="Login" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
 
             <div class="mb-3">

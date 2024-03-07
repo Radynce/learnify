@@ -11,7 +11,10 @@
     </div>
     <div class="form-container w-75 m-auto outlined">
         <form asp-action="SubmitResource" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
-
+            @if (TempData["Error"] != null)
+            {
+                <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>
+            }
             <div class="mb-3">
                 <label asp-for="Name" class="form-label">Title</label>
                 <input asp-for="Name" type="text" class="form-control" id="Name" aria-describedby="resourceTitle"
@@ -19,13 +22,14 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Link" class="form-label">Link</label>
-                <input  asp-for="Link" type="text" class="form-control" id="Link" aria-describedby="resourceLink"
+                <input asp-for="Link" type="text" class="form-control" id="Link" aria-describedby="resourceLink"
                     placeholder="https://www.freecodecamp.org/learn/2022/responsive-web-design">
             </div>
             <div class="mb-3">
                 <label asp-for="Description" class="form-label">Description</label>
                 <div class="form-floating">
-                    <textarea asp-for="Description" class="form-control" placeholder="Breif information about the resource." id="Description"
+                    <textarea asp-for="Description" class="form-control"
+                        placeholder="Breif information about the resource." id="Description"
                         style="height: 100px"></textarea>
                 </div>
             </div>
@@ -41,7 +45,7 @@
                 <input asp-for="Tags" type="text" class="form-control" id="Tags" aria-describedby="tags"
                     placeholder="web dev, IT, CS">
             </div>
-            <button type="submit"  class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </form>
 
 
