@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using learnify.Models;
-@inject SignInManager<IdentityUser> SignInManager;
-@inject SignInManager<IdentityUser> UserManager;
+@using Microsoft.AspNetCore.Http;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +20,7 @@
             <div class="container-fluid">
                 <div class="col-8">
                     <a class="navbar-brand text-black" asp-area="" asp-controller="Home" asp-action="Index">
-                            <img src="~/images/logo.png" alt="">
+                        <img src="~/images/logo.png" alt="">
                     </a>
                     <button class="navbar-toggler btn-primary" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -34,41 +33,49 @@
                 <div class="col-4 collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active text-secondary" asp-area="" asp-controller="Resource" asp-action="ViewResource">Resources</a>
+                            <a class="nav-link active text-secondary" asp-area="" asp-controller="Resource"
+                                asp-action="ViewResource">Resources</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-secondary" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" href="https://discord.gg/y5nnRGfn" target="_blank">Community</a>
+                            <a class="nav-link text-secondary" href="https://discord.gg/y5nnRGfn"
+                                target="_blank">Community</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary"  target="_blank" href="https://github.com/kshetritej/learnify"><i class="p-2 bi bi-github"></i></a>
+                            <a class="nav-link text-secondary" target="_blank"
+                                href="https://github.com/kshetritej/learnify"><i class="p-2 bi bi-github"></i></a>
                         </li>
-
-                        @if (SignInManager.IsSignedIn(User)){
-                        <li class="nav-item">
-                             <a class="nav-link text-dark" asp-area="" asp-controller="Manage" asp-action="Index">Profile</a>
-                        </li>
+                        @if (ViewBag.LoggedInUser != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Manage"
+                                    asp-action="Index">@ViewBag.LoggedInUser</a>
+                            </li>
                         }
-                        else{
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary" asp-asp-area="" asp-controller="User" asp-action="LoginForm" >Sign in</a>
-                        </li>
-                        <li class="nav-item ">
-                            <button type="button" class="bg-success rounded-2 border-success p-0">
-                                <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="RegisterForm">Sign up</a>
-                            </button>
-                        </li>
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-secondary" asp-asp-area="" asp-controller="User"
+                                    asp-action="LoginForm">Sign in</a>
+                            </li>
+                            <li class="nav-item ">
+                                <button type="button" class="bg-success rounded-2 border-success p-0">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="User"
+                                        asp-action="RegisterForm">Sign up</a>
+                                </button>
+                            </li>
                         }
                     </ul>
+
                 </div>
-@* 
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> *@
-                
+                @*
+                <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> *@
+
             </div>
         </nav>
     </header>
@@ -82,36 +89,36 @@
         <div class="container">
             <div class="row gap-4 rounded-2 border-success p-0">
 
-            <div class="col">
-                <h2>Learnify</h2>
-                <p>Collaborative compilation of free,quality learning materials</p>
-                <div class="d-flex flex-row gap-2">
-                    <a href="">Github</a>
-                    <a href="">Discord</a>
-                    <a href="">Twitter</a>
+                <div class="col">
+                    <h2>Learnify</h2>
+                    <p>Collaborative compilation of free,quality learning materials</p>
+                    <div class="d-flex flex-row gap-2">
+                        <a href="">Github</a>
+                        <a href="">Discord</a>
+                        <a href="">Twitter</a>
+                    </div>
+                </div>
+
+                <div class="col d-flex flex-column">
+                    <h4>Links</h4>
+                    <a href="">Resources</a>
+                    <a href="">About</a>
+                    <a href="">Community</a>
+                </div>
+
+                <div class="col d-flex flex-column">
+                    <h4>Support</h4>
+                    <a href="">FAQ</a>
+                    <a href="">Contribute</a>
+                    <a href="">Contact us</a>
+                </div>
+
+                <div class="col d-flex flex-column">
+                    <h4>Legal</h4>
+                    <a href="">Terms</a>
+                    <a href="">Privacy</a>
                 </div>
             </div>
-
-            <div class="col d-flex flex-column">
-                <h4>Links</h4>
-                <a href="">Resources</a> 
-                <a href="">About</a>
-                <a href="">Community</a>
-            </div>
-
-            <div class="col d-flex flex-column">
-                <h4>Support</h4>
-                <a href="">FAQ</a>
-                <a href="">Contribute</a>
-                <a href="">Contact us</a>
-            </div>
-
-            <div class="col d-flex flex-column">
-                <h4>Legal</h4>
-                <a href="">Terms</a>
-                <a href="">Privacy</a>
-            </div>
-        </div>
         </div>
     </footer>
 

@@ -6,8 +6,9 @@ namespace learnify.Controllers;
 
 public class ResourceController : Controller
 {
-    private  readonly AppDbContext _dbContext;
-    public ResourceController(AppDbContext dbContext){
+    private readonly AppDbContext _dbContext;
+    public ResourceController(AppDbContext dbContext)
+    {
         _dbContext = dbContext;
     }
     public IActionResult ViewResource()
@@ -17,19 +18,23 @@ public class ResourceController : Controller
 
     public IActionResult AddResource()
     {
+
         return View();
     }
     [HttpPost]
-    public IActionResult SubmitResource([FromForm] Resource resource){
-        try{
-        _dbContext.Resources.Add(resource);
-        _dbContext.SaveChanges();
-        return RedirectToAction(nameof(ViewResource));
+    public IActionResult SubmitResource([FromForm] Resource resource)
+    {
+        try
+        {
+            _dbContext.Resources.Add(resource);
+            _dbContext.SaveChanges();
+            return RedirectToAction(nameof(ViewResource));
         }
-        catch{
+        catch
+        {
             return RedirectToAction("AddResource");
         }
-   }
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

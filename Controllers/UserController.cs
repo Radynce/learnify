@@ -1,9 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using learnify.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace learnify.Controllers;
 
@@ -32,14 +29,18 @@ public class UserController : Controller
 
         if (dbUser == null)
         {
-            TempData["Error"] = "Credentials are wrong. Try Again!";
+            TempData["Error"] = "No user found, try batman!";
             return RedirectToAction(nameof(LoginForm));
         }
         if (dbUser.Password != user.Password)
         {
-            TempData["Error"] = "Password Wrong?";
+            TempData["Error"] = "Remember when she said, you are the one.";
             return RedirectToAction(nameof(LoginForm));
         }
+        HttpContext.Session.SetString("User",dbUser.Username);
+        var currUser = TempData["LoggedInUser"] = HttpContext.Session.GetString("User");
+        Console.WriteLine(currUser);
+        Console.WriteLine("Logged In successfully");
         return RedirectToAction("Index", "Home");
     }
     [HttpPost]
