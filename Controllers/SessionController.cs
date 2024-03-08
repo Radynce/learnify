@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using learnify.Models;
 public class SessionController : Controller
 {
     private readonly IHttpContextAccessor _httpContext;
@@ -7,7 +6,7 @@ public class SessionController : Controller
     [ActivatorUtilitiesConstructor] //solve for multiple constructors
     public SessionController(AppDbContext context, IHttpContextAccessor httpContext)
     {
-        _context= context;
+        _context = context;
         _httpContext = httpContext;
     }
     public IActionResult ViewProfileActivity()
@@ -17,15 +16,28 @@ public class SessionController : Controller
 
     public ActionResult Logout()
     {
+#pragma warning disable
         _httpContext.HttpContext.Session.Remove("User");
         _httpContext.HttpContext.Session.Remove("UserId");
+        _httpContext.HttpContext.Session.Remove("UserType");
+#pragma warning restore
         TempData["Logout Success"] = "User logged out successfully";
-        return RedirectToAction("Index","Home");
+        return RedirectToAction("Index", "Home");
     }
 
-    public ActionResult ActivityManager(){
+    public ActionResult ActivityManager()
+    {
         var user = _httpContext.HttpContext.Session.GetString("UserId");
-        Console.WriteLine("moved to activity");
-        return RedirectToAction("Index","Home");
+        var userType = _httpContext.HttpContext.Session.GetString("UserType");
+        if (userType == "User")
+        {
+            var userId = Guid.Parse(user);
+            var items = _context.Resources.Where(r => r.UserId == userId).ToList();
+            return View(items);
+        }
+        else{
+            var items = _context.Resources.ToList();
+            return View(items);
+        }
     }
 }

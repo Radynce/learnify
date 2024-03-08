@@ -57,11 +57,21 @@
                                     aria-expanded="false">
                                     @HttpContextAccessor.HttpContext.Session.GetString("User") &nbsp;<i class="bi bi-person-circle"></i>
                                 </button>
+                                @if(HttpContextAccessor.HttpContext.Session.GetString("UserType")== "User"){
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Session" asp-action="ActivityManager" >My Activity</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Session" asp-action="Logout">Logout</a></li>
+                                </ul>
+                                }
+                                else{
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" asp-controller="Session" asp-action="ActivityManager" >My Activity</a></li>
                                     <li><a class="dropdown-item" asp-controller="Admin" asp-action="ManageUser">Manage Users</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="ManageUser">Manage Resources</a></li>
                                     <li><a class="dropdown-item" asp-controller="Session" asp-action="Logout">Logout</a></li>
                                 </ul>
+ 
+                                }
                             </div>
                         }
                         else

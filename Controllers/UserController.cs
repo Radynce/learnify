@@ -41,9 +41,11 @@ public class UserController : Controller
         }
         TempData["Success"] = "I'd say god bless you, but it looks like he already did.";
         TempData["LoggedInUser"] = dbUser?.Username ?? "null";
-
-        _httpContext.HttpContext.Session.SetString("User",dbUser?.Username ?? "null");
+        #pragma warning disable
+        _httpContext.HttpContext.Session.SetString("UserType", dbUser?.UserType);
+        _httpContext.HttpContext.Session.SetString("User",dbUser?.Username);
         _httpContext.HttpContext.Session.SetString("UserId", dbUser?.UserId.ToString());
+        #pragma warning restore
         return RedirectToAction("Index", "Home");
 }
 
