@@ -78,12 +78,6 @@ public class UserController : Controller
         }
     }
 
-    // Delete Resource
-    public IActionResult Delete()
-    {
-        return View();
-    }
-
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

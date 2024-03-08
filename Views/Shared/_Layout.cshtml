@@ -3,8 +3,12 @@
 @using Microsoft.AspNetCore.Http;
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
+@{
+    #pragma warning disable
+    var user = HttpContextAccessor.HttpContext.Session.GetString("User");
+    var userType = HttpContextAccessor.HttpContext.Session.GetString("UserType");
 
-
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,14 +54,14 @@
                             <a class="nav-link text-secondary" target="_blank"
                                 href="https://github.com/kshetritej/learnify"><i class="p-2 bi bi-github"></i></a>
                         </li>
-                        @if (HttpContextAccessor.HttpContext.Session.GetString("User") != null)
+                        @if( user != null)
                         {
                             <div class="dropdown">
                                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    @HttpContextAccessor.HttpContext.Session.GetString("User") &nbsp;<i class="bi bi-person-circle"></i>
+                                    @user &nbsp;<i class="bi bi-person-circle"></i>
                                 </button>
-                                @if(HttpContextAccessor.HttpContext.Session.GetString("UserType")== "User"){
+                                @if(userType == "User"){
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" asp-controller="Session" asp-action="ActivityManager" >My Activity</a></li>
                                     <li><a class="dropdown-item" asp-controller="Session" asp-action="Logout">Logout</a></li>

@@ -27,9 +27,11 @@ public class SessionController : Controller
 
     public ActionResult ActivityManager()
     {
+        #pragma warning disable
         var user = _httpContext.HttpContext.Session.GetString("UserId");
         var userType = _httpContext.HttpContext.Session.GetString("UserType");
         var userId = Guid.Parse(user);
+        #pragma warning restore
         var items = _context.Resources.Where(r => r.UserId == userId).ToList();
         return View(items);
     }
