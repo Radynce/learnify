@@ -53,6 +53,7 @@ public IActionResult Register([FromForm] User user)
 {
     try
     {
+        user.UserType = "User";
         user.CreatedAt = DateTime.UtcNow;
         _context.Users.Add(user);
         _context.SaveChanges();

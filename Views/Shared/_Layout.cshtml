@@ -58,9 +58,9 @@
                                     @HttpContextAccessor.HttpContext.Session.GetString("User") &nbsp;<i class="bi bi-person-circle"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Session" asp-action="ActivityManager" >My Activity</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="ManageUser">Manage Users</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Session" asp-action="Logout">Logout</a></li>
                                 </ul>
                             </div>
                         }

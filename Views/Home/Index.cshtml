@@ -2,7 +2,10 @@
     ViewData["Title"] = " One stop platform for world of knowledge.";
 }
 
+@if (TempData["Logout Success"] != null){
 
+    <div id="alert-dialog" class="alert alert-success">@TempData["Logout Success"]</div>
+}
 @if (TempData["Success"] != null)
 {
     <div id="alert-dialog" class="alert alert-success">@TempData["Success"]</div>
