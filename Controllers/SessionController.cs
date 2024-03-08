@@ -29,15 +29,8 @@ public class SessionController : Controller
     {
         var user = _httpContext.HttpContext.Session.GetString("UserId");
         var userType = _httpContext.HttpContext.Session.GetString("UserType");
-        if (userType == "User")
-        {
-            var userId = Guid.Parse(user);
-            var items = _context.Resources.Where(r => r.UserId == userId).ToList();
-            return View(items);
-        }
-        else{
-            var items = _context.Resources.ToList();
-            return View(items);
-        }
+        var userId = Guid.Parse(user);
+        var items = _context.Resources.Where(r => r.UserId == userId).ToList();
+        return View(items);
     }
 }

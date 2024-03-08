@@ -2,7 +2,10 @@
     ViewData["Title"] = "Register";
 }
 @model learnify.Models.User;
-
+@if (TempData["Error"] != null)
+{
+    <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>
+}
 <div class="container sign-up-container">
     <div class="register-header">
         <h2 class="text-center">Sign up now</h2>
@@ -17,7 +20,8 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Username" class="form-label">Username</label>
-                <input type="text" asp-for="Username" class="form-control" id="username" aria-describedby="usernameHelp">
+                <input type="text" asp-for="Username" class="form-control" id="username"
+                    aria-describedby="usernameHelp">
             </div>
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email </label>
@@ -30,7 +34,7 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label">Confirm Password</label>
-                <input type="password"  asp-for="Password" class="form-control" id="confirm-password">
+                <input type="password" asp-for="Password" class="form-control" id="confirm-password">
             </div>
 
 
@@ -51,7 +55,8 @@
     <h2 class="text-center">Support Us!</h2>
 
     <div class="w-50 m-auto text-center d-flex me-auto">
-        <p class="fs-6 lh-base">Learnify is open-source project initialized as a college project, but it has a lot of potential
+        <p class="fs-6 lh-base">Learnify is open-source project initialized as a college project, but it has a lot of
+            potential
             asp-for students or anyone who wants to find better resources. Your contribution to maitain this project is
             highly valued in our community.</p>
     </div>

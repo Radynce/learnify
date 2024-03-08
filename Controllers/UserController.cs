@@ -9,7 +9,7 @@ public class UserController : Controller
     private readonly IHttpContextAccessor _httpContext;
     private readonly AppDbContext _context;
     [ActivatorUtilitiesConstructor] //solve for multiple constructors
-    public UserController(AppDbContext context,IHttpContextAccessor httpContext)
+    public UserController(AppDbContext context, IHttpContextAccessor httpContext)
     {
         _context = context;
         _httpContext = httpContext;
@@ -41,37 +41,55 @@ public class UserController : Controller
         }
         TempData["Success"] = "I'd say god bless you, but it looks like he already did.";
         TempData["LoggedInUser"] = dbUser?.Username ?? "null";
-        #pragma warning disable
+#pragma warning disable
         _httpContext.HttpContext.Session.SetString("UserType", dbUser?.UserType);
-        _httpContext.HttpContext.Session.SetString("User",dbUser?.Username);
+        _httpContext.HttpContext.Session.SetString("User", dbUser?.Username);
         _httpContext.HttpContext.Session.SetString("UserId", dbUser?.UserId.ToString());
-        #pragma warning restore
+#pragma warning restore
         return RedirectToAction("Index", "Home");
-}
-
-
-[HttpPost]
-public IActionResult Register([FromForm] User user)
-{
-    try
-    {
-        user.UserType = "User";
-        user.CreatedAt = DateTime.UtcNow;
-        _context.Users.Add(user);
-        _context.SaveChanges();
-        return RedirectToAction(nameof(LoginForm));
     }
-    catch (System.Exception)
+
+
+    [HttpPost]
+    public IActionResult Register([FromForm] User user)
     {
-        throw;
+        try
+        {
+            if (!string.IsNullOrEmpty(user.Username) &&
+                !string.IsNullOrEmpty(user.FullName) &&
+                !string.IsNullOrEmpty(user.Email) &&
+                !string.IsNullOrEmpty(user.Password))
+            {
+                user.UserType = "User";
+                user.CreatedAt = DateTime.UtcNow;
+                _context.Users.Add(user);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(LoginForm));
+            }
+            else
+            {
+                TempData["Error"] = "Please fill up all sections.";
+                return RedirectToAction(nameof(RegisterForm));
+            }
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
-}
+
+    // Delete Resource
+    public IActionResult Delete()
+    {
+        return View();
+    }
 
 
-[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-public IActionResult Error()
-{
-    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-}
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
 }
 
