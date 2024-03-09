@@ -6,29 +6,40 @@
 @model IEnumerable<learnify.Models.User>;
 
 <div>
-    List of all users
-</div>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h4>Manage Users </h4>
 </div>
 
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
+
             <tr>
                 <td>@user.UserId</td>
                 <td>@user.FullName</td>
+                <td>@user.Username</td>
                 <td>@user.Email</td>
+                <td>
+                    <div class="btn-group gap-2" role="group" aria-label="Basic mixed styles example">
+                        <form id="delte-form-@user.UserId" method="post" asp-controller="Resource" asp-action="Delete">
+                            <input type="hidden" asp-for="@user.UserId" />
+                            @*asp-route-itemid="@item.Id" // might need it *@
+                            <button type="submit" asp-controller="Resource" asp-route-itemid="@user.UserId" asp-action="Delete"
+                                class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
         }
+
     </tbody>
 </table>
