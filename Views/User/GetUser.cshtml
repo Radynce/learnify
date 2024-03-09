@@ -8,6 +8,11 @@
 <div>
     <h4>Manage Users </h4>
 </div>
+@if (TempData["SelfDestroy"] != null)
+{
+    <div id="alert-dialog" class="m-auto alert alert-danger">@TempData["SelfDestroy"]</div>
+    TempData["SelfDestroy"] = null;
+}
 
 <table class="table">
     <thead>
@@ -32,8 +37,8 @@
                     <div class="btn-group gap-2" role="group" aria-label="Basic mixed styles example">
                         <form id="delete-form-@user.UserId" method="post" asp-controller="Admin" asp-action="DeleteUser">
                             <input type="hidden" asp-for="@user.UserId" />
-                            <button type="submit" asp-controller="Admin" asp-route-userid="@user.UserId" asp-action="DeleteUser"
-                                class="btn btn-danger">Delete</button>
+                            <button type="submit" asp-controller="Admin" asp-route-userid="@user.UserId"
+                                asp-action="DeleteUser" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </td>

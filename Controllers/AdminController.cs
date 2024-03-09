@@ -24,8 +24,19 @@ public class AdminController : Controller {
             TempData["Error"] = "No resource available";
             return RedirectToAction("GetUser", "User");
         }
+        #pragma warning disable
+        if(user.Username == _httpContext.HttpContext.Session.GetString("User")){
+            Console.WriteLine("Life one shot ho, marera feri janmey jhan arko jhanjhat ho!");
+            TempData["SelfDestroy"] = "You can't delete yourself. ";
+            return RedirectToAction("GetUser","User");
+        }
         _context.Users.Remove(user);
         _context.SaveChanges();
         return RedirectToAction("GetUser", "User");
+    }
+    #pragma warning restore
+
+    public ActionResult ManageResource(){
+        return View();
     }
 }
