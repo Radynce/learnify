@@ -37,6 +37,7 @@ public class AdminController : Controller {
     #pragma warning restore
 
     public ActionResult ManageResource(){
-        return View();
+        var resources = _context.Resources.ToList();
+        return View(resources);
     }
 }

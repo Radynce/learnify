@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Manage Resources";
+}
+@model IEnumerable<learnify.Models.Resource>
+
+<div class="container">
+    <div class="d-flex flex-row justify-content-between heaing-and-add-btn m-auto" style="max-width: 720px;">
+        <h1 class="text-center mb-4">Manage Resources</h1>
+    </div>
+
+    @if (TempData["itemDeleted"] != null)
+    {
+        <div id="alert-dialog" class="alert alert-success">@TempData["itemDeleted"]</div>
+    }
+
+    @foreach (var item in Model)
+    {
+        <div class="row justify-content-center">
+            <div class="card mb-3" style="max-width: 720px;">
+                <div class="row g-0">
+
+                    <div class="col-md-8 ">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 p-4 row align-items-center justify-items-center ">
+                        <form id="delete-form-@item.Id" method="post" asp-controller="Resource" asp-action="Delete">
+                            <input type="hidden" asp-for="@item.Id" />
+                            <button type="submit" asp-controller="Resource" asp-route-itemid="@item.Id" asp-action="Delete" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>
