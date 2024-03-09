@@ -30,10 +30,9 @@
                 <td>@user.Email</td>
                 <td>
                     <div class="btn-group gap-2" role="group" aria-label="Basic mixed styles example">
-                        <form id="delte-form-@user.UserId" method="post" asp-controller="Resource" asp-action="Delete">
+                        <form id="delete-form-@user.UserId" method="post" asp-controller="Admin" asp-action="DeleteUser">
                             <input type="hidden" asp-for="@user.UserId" />
-                            @*asp-route-itemid="@item.Id" // might need it *@
-                            <button type="submit" asp-controller="Resource" asp-route-itemid="@user.UserId" asp-action="Delete"
+                            <button type="submit" asp-controller="Admin" asp-route-userid="@user.UserId" asp-action="DeleteUser"
                                 class="btn btn-danger">Delete</button>
                         </form>
                     </div>
