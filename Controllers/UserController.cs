@@ -14,6 +14,11 @@ public class UserController : Controller
         _context = context;
         _httpContext = httpContext;
     }
+    public IActionResult GetUser()
+    {
+        var users = _context.Users.ToList();
+        return View(users);
+    }
 
     public IActionResult RegisterForm()
     {
@@ -36,9 +41,10 @@ public class UserController : Controller
         }
         if (dbUser.Password != user.Password)
         {
-            TempData["Error"] = "Remember when she said, you are the one.";
+            TempData["Error"] = "Username or password wrong.";
             return RedirectToAction(nameof(LoginForm));
         }
+        Console.WriteLine(dbUser.Username);
         TempData["Success"] = "I'd say god bless you, but it looks like he already did.";
         TempData["LoggedInUser"] = dbUser?.Username ?? "null";
 #pragma warning disable

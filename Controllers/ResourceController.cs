@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using learnify.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace learnify.Controllers;
 
@@ -23,60 +24,62 @@ public class ResourceController : Controller
 
     public IActionResult AddResource()
     {
-        #pragma warning disable
+#pragma warning disable
         var httpContext = _httpContextAccessor.HttpContext;
         if (httpContext.Session.GetString("User") != null)
-        #pragma warning restore
+#pragma warning restore
         {
             return View();
         }
         TempData["NotLoggedIn"] = "Login to add your resources.";
-        return RedirectToAction("LoginForm","User");
+        return RedirectToAction("LoginForm", "User");
     }
 
 
     [HttpPost]
     public IActionResult SubmitResource([FromForm] Resource resource)
     {
-        if(ModelState.IsValid){
-        try
+        if (ModelState.IsValid)
         {
-            #pragma warning disable
-            var userId = _httpContextAccessor.HttpContext.Session.GetString("UserId");
-            resource.UserId = Guid.Parse(userId);
-            #pragma warning restore
-            _dbContext.Resources.Add(resource);
-            _dbContext.SaveChanges();
-            TempData["Success"] ="Whoa! captain thanks for your contribution.";
-            return RedirectToAction(nameof(ViewResource));
-        }
-        catch
-        {
-            return RedirectToAction("AddResource");
-        }
- 
+            try
+            {
+#pragma warning disable
+                var userId = _httpContextAccessor.HttpContext.Session.GetString("UserId");
+                resource.UserId = Guid.Parse(userId);
+#pragma warning restore
+                _dbContext.Resources.Add(resource);
+                _dbContext.SaveChanges();
+                TempData["Success"] = "Whoa! captain thanks for your contribution.";
+                return RedirectToAction(nameof(ViewResource));
+            }
+            catch
+            {
+                return RedirectToAction("AddResource");
+            }
+
         }
         TempData["Error"] = "Error inserting data, try again";
         return View();
-   }
+    }
 
 
-//Delete
-    public IActionResult Delete(Guid Id){
-    
-    var resId = Id.ToString();
-    if(resId == null){
-        return NotFound();
-    }
-    var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == Id);
-    if(resource == null){
-        return NotFound();
-    }
-    Console.WriteLine("Deleting resource");
-    _dbContext.Resources.Remove(resource);
-    _dbContext.SaveChanges();
-    Console.WriteLine("Resource deleted");
-    return RedirectToAction("Session", "ActivityManager");
+    //Delete
+    [HttpPost]
+    public IActionResult Delete([FromForm] Guid Id)
+    {
+        var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
+        var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == queryId);
+        Console.WriteLine(queryId);
+
+        if (resource == null)
+        {
+            Console.WriteLine("No resource found.");
+        }
+        Console.WriteLine("Deleting resource");
+        _dbContext.Resources.Remove(resource);
+        _dbContext.SaveChanges();
+        Console.WriteLine("Resource deleted");
+        return RedirectToAction("ActivityManager", "Session");
 
     }
 

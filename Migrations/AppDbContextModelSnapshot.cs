@@ -43,6 +43,9 @@ namespace learnify.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("ResourceCollectionId")
+                        .HasColumnType("uuid");
+
                     b.Property<List<string>>("Tags")
                         .HasMaxLength(3)
                         .HasColumnType("text[]");
@@ -52,9 +55,27 @@ namespace learnify.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ResourceCollectionId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Resources");
+                });
+
+            modelBuilder.Entity("learnify.Models.ResourceCollection", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("SelectedResourceId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SelectedResourceId");
+
+                    b.ToTable("ResourceCollections");
                 });
 
             modelBuilder.Entity("learnify.Models.User", b =>
@@ -93,6 +114,10 @@ namespace learnify.Migrations
 
             modelBuilder.Entity("learnify.Models.Resource", b =>
                 {
+                    b.HasOne("learnify.Models.ResourceCollection", null)
+                        .WithMany("Resources")
+                        .HasForeignKey("ResourceCollectionId");
+
                     b.HasOne("learnify.Models.User", "User")
                         .WithMany("Resources")
                         .HasForeignKey("UserId")
@@ -100,6 +125,22 @@ namespace learnify.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("learnify.Models.ResourceCollection", b =>
+                {
+                    b.HasOne("learnify.Models.Resource", "SelectedResource")
+                        .WithMany()
+                        .HasForeignKey("SelectedResourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SelectedResource");
+                });
+
+            modelBuilder.Entity("learnify.Models.ResourceCollection", b =>
+                {
+                    b.Navigation("Resources");
                 });
 
             modelBuilder.Entity("learnify.Models.User", b =>

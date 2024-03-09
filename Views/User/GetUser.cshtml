@@ -1,6 +1,9 @@
 @{
     ViewData["Title"] = "Users";
 }
+@using learnify.Controllers;
+
+@model IEnumerable<learnify.Models.User>;
 
 <div>
     List of all users
@@ -19,12 +22,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var user in Model)
         {
             <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Email</td>
+                <td>@user.UserId</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
             </tr>
         }
     </tbody>

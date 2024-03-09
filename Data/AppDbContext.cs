@@ -6,4 +6,5 @@ public class AppDbContext:DbContext {
 
     public DbSet<User> Users { get; set; }
     public DbSet<Resource> Resources {get; set;}
+    public DbSet<ResourceCollection> ResourceCollections {get; set;}
 }

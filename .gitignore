@@ -6,3 +6,4 @@ learnify.csproj
 .fake
 ./Migrations/*
 /Migrations
+.vscode
