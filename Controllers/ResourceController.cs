@@ -54,12 +54,12 @@ public class ResourceController : Controller
             }
             catch
             {
-                return RedirectToAction("AddResource");
+                return RedirectToAction(nameof(AddResource));
             }
 
         }
         TempData["Error"] = "Error inserting data, try again";
-        return View();
+        return RedirectToAction(nameof(AddResource));
     }
 
 
@@ -75,7 +75,7 @@ public class ResourceController : Controller
         {
             Console.WriteLine("No resource found.");
             TempData["Error"] = "No resource available";
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         Console.WriteLine("Deleting resource");
         _dbContext.Resources.Remove(resource);
@@ -94,12 +94,13 @@ public class ResourceController : Controller
         {
             Console.WriteLine("No resource found.");
             TempData["Error"] = "No resource available";
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
-        return View("EditResource",resource);    
+        return View("EditResource", resource);
 
     }
-    public ActionResult ConfirmEdit([FromForm]Resource resource, Guid id){
+    public ActionResult ConfirmEdit([FromForm] Resource resource, Guid id)
+    {
         if (ModelState.IsValid)
         {
             try
@@ -111,7 +112,7 @@ public class ResourceController : Controller
                 _dbContext.Resources.Update(resource);
                 _dbContext.SaveChanges();
                 TempData["Success"] = "Resource updated successfully";
-                return RedirectToAction("ActivityManager","Session");
+                return RedirectToAction("ActivityManager", "Session");
             }
             catch
             {
