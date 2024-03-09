@@ -23,7 +23,11 @@
                                 @*asp-route-itemid="@item.Id" // might need it *@
                                 <button type="submit" asp-controller="Resource" asp-route-itemid="@item.Id" asp-action="Delete"  class="btn btn-danger">Delete</button> 
                             </form>
-                            <button type="button" class="btn btn-warning">Edit</button>
+
+                            <form id="edit-form-@item.Id" method="post" asp-controller="Resource" asp-action="Edit">
+                                <input type="hidden" asp-for="@item.Id" />
+                                <button type="submit" asp-controller="Resource" asp-route-itemid="@item.Id" asp-action="Edit" class="btn btn-warning">Edit</button> 
+                            </form>
                             <button type="button" class="btn btn-success">View</button>
                         </div>
                     </div>

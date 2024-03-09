@@ -65,7 +65,7 @@ public class ResourceController : Controller
 
     //Delete
     [HttpPost]
-    public IActionResult Delete([FromForm] Guid Id)
+    public IActionResult Delete(Guid Id)
     {
         var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
         var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == queryId);
@@ -74,6 +74,8 @@ public class ResourceController : Controller
         if (resource == null)
         {
             Console.WriteLine("No resource found.");
+            TempData["Error"] = "No resource available";
+            return RedirectToAction("Index","Home");
         }
         Console.WriteLine("Deleting resource");
         _dbContext.Resources.Remove(resource);
@@ -82,6 +84,45 @@ public class ResourceController : Controller
         return RedirectToAction("ActivityManager", "Session");
 
     }
+
+    public IActionResult Edit([FromForm] Guid Id)
+    {
+        var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
+        Console.WriteLine(queryId);
+        var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == queryId);
+        if (resource == null)
+        {
+            Console.WriteLine("No resource found.");
+            TempData["Error"] = "No resource available";
+            return RedirectToAction("Index","Home");
+        }
+        return View("EditResource",resource);    
+
+    }
+    public ActionResult ConfirmEdit([FromForm]Resource resource, Guid id){
+        if (ModelState.IsValid)
+        {
+            try
+            {
+#pragma warning disable
+                var userId = _httpContextAccessor.HttpContext.Session.GetString("UserId");
+                resource.UserId = Guid.Parse(userId);
+#pragma warning restore
+                _dbContext.Resources.Update(resource);
+                _dbContext.SaveChanges();
+                TempData["Success"] = "Resource updated successfully";
+                return RedirectToAction("ActivityManager","Session");
+            }
+            catch
+            {
+                return RedirectToAction("EditResource");
+            }
+
+        }
+        TempData["Error"] = "Error inserting data, try again";
+        return View();
+    }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
