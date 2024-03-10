@@ -31,7 +31,7 @@ public class ResourceController : Controller
         {
             return View();
         }
-        TempData["NotLoggedIn"] = "Login to add your resources.";
+        TempData["NotLoggedIn"] = "You must Login to add your resources.";
         return RedirectToAction("LoginForm", "User");
     }
 
@@ -67,6 +67,14 @@ public class ResourceController : Controller
     [HttpPost]
     public IActionResult Delete(Guid Id)
     {
+
+#pragma warning disable
+        var httpContext = _httpContextAccessor.HttpContext;
+        if (httpContext.Session.GetString("User") != null)
+#pragma warning restore
+        {
+            return RedirectToAction("User","LoginForm");
+        }
         var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
         var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == queryId);
         Console.WriteLine(queryId);
@@ -87,6 +95,13 @@ public class ResourceController : Controller
 
     public IActionResult Edit([FromForm] Guid Id)
     {
+#pragma warning disable
+        var httpContext = _httpContextAccessor.HttpContext;
+        if (httpContext.Session.GetString("User") != null)
+#pragma warning restore
+        {
+            return RedirectToAction("User","LoginForm");
+        }
         var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
         Console.WriteLine(queryId);
         var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == queryId);

@@ -18,6 +18,16 @@
         {
             <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["NotLoggedIn"]</div>
         }
+        @if(TempData["LoginToManage"] != null){
+
+            <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["LoginToManage"]</div>
+            TempData["LoginToManae"] = null;
+        }
+        @if(TempData["LoginToDelete"]!=null){
+
+            <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["LoginToDelete"]</div>
+            TempData["LoginToDelete"] = null;
+        }
         <form asp-action="Login" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
 
             <div class="mb-3">
