@@ -25,10 +25,14 @@
                             <p class="card-text">@item.Description</p>
                         </div>
                     </div>
-                    <div class="col-md-4 p-4 row align-items-center justify-items-center ">
+                    <div class="col-md-4 gap-4 p-4 row align-items-center justify-items-center ">
                         <form id="delete-form-@item.Id" method="post" asp-controller="Resource" asp-action="Delete">
                             <input type="hidden" asp-for="@item.Id" />
-                            <button type="submit" asp-controller="Resource" asp-route-itemid="@item.Id" asp-action="Delete" class="btn btn-danger">Delete</button>
+                            <button type="submit" asp-controller="Resource" asp-route-itemid="@item.Id" asp-action="Delete"
+                                class="btn btn-danger">Delete</button>
+                        <a href="@item.Link" target="_blank">
+                            <button type="button" class="btn btn-success">View</button>
+                        </a>
                         </form>
                     </div>
                 </div>
