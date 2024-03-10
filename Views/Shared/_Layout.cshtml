@@ -109,38 +109,37 @@
         </main>
     </div>
 
-    <footer class="border-top footer pb-4 text-muted p-2">
+    <footer class="text-muted border-top footer" style="padding: 2rem 0 10rem 0">
         <div class="container">
-            <div class="row gap-4 rounded-2 border-success p-0">
-
+            <div class="row gap-2 border-success p-0">
                 <div class="col">
                     <h2>Learnify</h2>
-                    <p>Collaborative compilation of free,quality learning materials</p>
+                    <p>Collaborative compilation of free and <br> quality learning materials</p>
                     <div class="d-flex flex-row gap-2">
-                        <a href="">Github</a>
-                        <a href="">Discord</a>
-                        <a href="">Twitter</a>
+                        <a href="https://github.com/AntsOrg/learnify" target="_blank"><i class="bi bi-github"></i></a>
+                        <a href="#"><i class="bi bi-discord"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
                     </div>
                 </div>
 
                 <div class="col d-flex flex-column">
                     <h4>Links</h4>
-                    <a href="">Resources</a>
-                    <a href="">About</a>
-                    <a href="">Community</a>
+                    <a asp-controller="Resource" asp-action="ViewResource">Resources</a>
+                    <a asp-controller="Home" asp-action="About">About</a>
+                    <a href="#">Community</a>
                 </div>
 
                 <div class="col d-flex flex-column">
                     <h4>Support</h4>
-                    <a href="">FAQ</a>
-                    <a href="">Contribute</a>
-                    <a href="">Contact us</a>
+                    <a href="#">FAQ</a>
+                    <a href="https://github.com/AntsOrg/learnify" target="_blank">Contribute</a>
+                    <a href="#">Contact us</a>
                 </div>
 
                 <div class="col d-flex flex-column">
                     <h4>Legal</h4>
-                    <a href="">Terms</a>
-                    <a href="">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
                 </div>
             </div>
         </div>

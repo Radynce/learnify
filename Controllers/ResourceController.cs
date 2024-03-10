@@ -49,7 +49,7 @@ public class ResourceController : Controller
 #pragma warning restore
                 _dbContext.Resources.Add(resource);
                 _dbContext.SaveChanges();
-                TempData["Success"] = "Whoa! captain thanks for your contribution.";
+                TempData["Success"] = "Resource added successfully!";
                 return RedirectToAction(nameof(ViewResource));
             }
             catch
@@ -58,7 +58,7 @@ public class ResourceController : Controller
             }
 
         }
-        TempData["Error"] = "Error inserting data, try again";
+        TempData["Error"] = "Error in data insertion, please try again with valid info.";
         return RedirectToAction(nameof(AddResource));
     }
 
@@ -70,10 +70,10 @@ public class ResourceController : Controller
 
 #pragma warning disable
         var httpContext = _httpContextAccessor.HttpContext;
-        if (httpContext.Session.GetString("User") != null)
+        if (httpContext.Session.GetString("User") == null)
 #pragma warning restore
         {
-            return RedirectToAction("User","LoginForm");
+            return RedirectToAction("User", "LoginForm");
         }
         var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
         var resource = _dbContext.Resources.FirstOrDefault(r => r.Id == queryId);
@@ -81,14 +81,12 @@ public class ResourceController : Controller
 
         if (resource == null)
         {
-            Console.WriteLine("No resource found.");
             TempData["Error"] = "No resource available";
             return RedirectToAction("Index", "Home");
         }
-        Console.WriteLine("Deleting resource");
         _dbContext.Resources.Remove(resource);
         _dbContext.SaveChanges();
-        Console.WriteLine("Resource deleted");
+        TempData["itemDeleted"]= "Item deleted successfully!";
         return RedirectToAction("ActivityManager", "Session");
 
     }
@@ -97,10 +95,10 @@ public class ResourceController : Controller
     {
 #pragma warning disable
         var httpContext = _httpContextAccessor.HttpContext;
-        if (httpContext.Session.GetString("User") != null)
+        if (httpContext.Session.GetString("User") == null)
 #pragma warning restore
         {
-            return RedirectToAction("User","LoginForm");
+            return RedirectToAction("User", "LoginForm");
         }
         var queryId = Guid.TryParse(Request.Query["itemid"], out var guidId) ? guidId : Guid.Empty;
         Console.WriteLine(queryId);

@@ -13,6 +13,11 @@
     <div id="alert-dialog" class="m-auto alert alert-danger">@TempData["SelfDestroy"]</div>
     TempData["SelfDestroy"] = null;
 }
+@if (TempData["UserDeleteSuccess"] != null)
+{
+    <div id="alert-dialog" class="m-auto alert alert-danger">@TempData["UserDeleteSuccess"]</div>
+    TempData["UserDeleteSuccess"] = null;
+}
 
 <table class="table">
     <thead>

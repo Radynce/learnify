@@ -28,6 +28,10 @@ public class SessionController : Controller
     public ActionResult ActivityManager()
     {
         #pragma warning disable
+        if(_httpContext.HttpContext.Session.GetString("UserId") == null){
+            TempData["NoSession"] = "Log in to manage your activity.";
+            return RedirectToAction("LoginForm","User");
+        }
         var user = _httpContext.HttpContext.Session.GetString("UserId");
         var userType = _httpContext.HttpContext.Session.GetString("UserType");
         var userId = Guid.Parse(user);

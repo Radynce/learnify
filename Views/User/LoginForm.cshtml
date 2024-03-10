@@ -6,10 +6,12 @@
 <div class="container sign-in-container">
     <div class="login-header">
         <h2 class="text-center">Sign in to your account</h2>
-        <p class="text-center">Or <span><a href="" class="text-decoration-underline text-secondary fw-medium">sign up
-                    asp-for a new account</a></span></p>
+        <p class="text-center">Or <span><a class="text-decoration-underline text-secondary fw-medium" asp-controller="User" asp-action="RegisterForm">sign up for a new account</a></span></p>
     </div>
     <div class="form-container w-75 m-auto outlined">
+        @if(TempData["NoSession"] != null){
+            <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["NoSession"]</div>
+        }
         @if (TempData["Error"] != null)
         {
             <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>

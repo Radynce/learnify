@@ -7,13 +7,13 @@
     <div class="addRes-header">
         <h2 class="text-center">Add new resource</h2>
         <p class="text-center w-50 m-auto">Help the community and maintainers. Please don't add resources which already
-            exists - search once beasp-fore adding one.</p>
+            exists - search once before adding one.</p>
     </div>
     <div class="form-container w-75 m-auto outlined">
         <form asp-action="SubmitResource" asp-controller="Resource" class="w-50 d-flex p-4 rounded-4 flex-column  bg-outline-success px-4 m-auto">
             @if (TempData["Error"] != null)
             {
-                <div id="alert-dialog" class="w-50 m-auto alert alert-danger">@TempData["Error"]</div>
+                <div id="alert-dialog" class="m-auto alert alert-danger">@TempData["Error"]</div>
             }
             <div class="mb-3">
                 <label asp-for="Name" class="form-label">Title</label>

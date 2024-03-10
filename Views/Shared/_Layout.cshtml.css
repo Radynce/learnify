@@ -39,11 +39,12 @@ button.accept-policy {
   line-height: inherit;
 }
 
-.footer {
-  padding:40rem 0 10rem 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
+.footer[b-exyiusaera]{
+  padding: 10rem 0 !important;
   top: 100%;
+  position: absolute;
+  white-space: nowrap;
+  width: 100%;
 } 
+
+

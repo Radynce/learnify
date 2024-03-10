@@ -2,7 +2,9 @@
     ViewData["Title"] = "Manage Resources";
 }
 @model IEnumerable<learnify.Models.Resource>;
-
+@if(TempData["itemDeleted"] != null){
+        <div id="alert-dialog" class="alert alert-warning">@TempData["itemDeleted"]</div>
+}
 <div class="container">
     @foreach (var item in Model)
     {
@@ -13,6 +15,7 @@
                     <div class="col-md-8 ">
                         <div class="card-body">
                             <h5 class="card-title">@item.Name</h5> 
+                            <p class="card-text">@item.Description</p>
                             <p class="card-text">@item.Id</p>
                         </div>
                     </div>
@@ -20,7 +23,6 @@
                         <div class="btn-group gap-2" role="group" aria-label="Basic mixed styles example">
                             <form id="delte-form-@item.Id" method="post" asp-controller="Resource" asp-action="Delete">
                                 <input type="hidden" asp-for="@item.Id" />
-                                @*asp-route-itemid="@item.Id" // might need it *@
                                 <button type="submit" asp-controller="Resource" asp-route-itemid="@item.Id" asp-action="Delete"  class="btn btn-danger">Delete</button> 
                             </form>
 

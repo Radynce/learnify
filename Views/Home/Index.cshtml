@@ -1,37 +1,36 @@
 ﻿@{
     ViewData["Title"] = " One stop platform for world of knowledge.";
 }
-
-@if (TempData["Logout Success"] != null){
-
+@if (TempData["CommonUser"] != null)
+{
+    <div id="alert-dialog" class="alert alert-success">@TempData["CommonUser"]</div>
+    TempData["CommonUser"] = null;
+}
+@if (TempData["Logout Success"] != null)
+{
     <div id="alert-dialog" class="alert alert-success">@TempData["Logout Success"]</div>
+    TempData["Logout Success"] = null;
 }
 @if (TempData["Success"] != null)
 {
     <div id="alert-dialog" class="alert alert-success">@TempData["Success"]</div>
+    TempData["Success"] = null;
 }
 
 <div class="header-text text-center gap-3">
-
     <h1 class="display-2 mt-4">Empower your <span class="text-primary display-2 fw-bold">Learning</span></br> Journey
         with
         Learnify</h1>
-    <p class="fs-3 p-4">A one stop platform for world of knowledge </br> maintened by community for community.</p>
+    <p class="fs-3 p-4">A one stop platform for world of knowledge </br> maintened by community for the community.</p>
     <button class="btn btn-success py-2 px-4 mb-4">
         <a class="text-decoration-none text-white fs-4" asp-area="" asp-controller="Resource"
             asp-action="ViewResource">Explore
             Resources</a>
     </button>
 </div>
-@* <div class="container">
-<div class="cover-image align-centers">
-<img src="~/images/booksCover.jpeg" alt="booksCoverImage">
-</div>
-</div> *@
-
 <div class="container-fluid  offers-section p-4 mt-4">
-    <h1 class="display-4 text-center">What we can except from Learnify?</h1>
-    <p class="mb-4 fs-4 text-center">From accessing a vast library of resources to actively contributing your own
+    <h1 class="display-6 text-center">What we can except from Learnify?</h1>
+    <p class="mb-4 fs-5 text-center">From accessing a vast library of resources to actively contributing your own
         knowledge,
         Learnify fosters both individual growth and a collaborative learning environment.
     </p>
@@ -77,8 +76,8 @@
 
 </div>
 <div class="container  text-center h-25 learn-everything">
-    <h2 class="display-4  text-center">Find everything you are looking for.</h2>
-    <p class="text-center fs-4">Learnify has broad category of many materials whether it is related to psychology,
+    <h2 class="display-6  text-center">Find everything you are looking for.</h2>
+    <p class="text-center fs-5">Learnify has broad category of many materials whether it is related to psychology,
         business, computer science or any other.</p>
 
     <div class="row justify-content-center gap-4 text-center">
@@ -105,9 +104,9 @@
     </div>
 
     <a asp-controller="Resource" asp-action="ViewResource">
-    <button class="mt-4 px-4 py-2 btn btn-outline-success">
-        View Full Sources
-    </button>
+        <button class="mt-4 px-4 py-2 btn btn-outline-success">
+            View Full Sources
+        </button>
     </a>
 
     <div class="container my-4 py-4">
@@ -115,7 +114,7 @@
 
         <div class="w-50 m-auto text-center d-flex me-auto">
             <p class="fs-6">Learnify is open-source project initialized as a college project, but it has a lot of
-                potential for students or anyone who wants to find better resources. Your contribution to maitain this
+                potential for students or anyone who wants to find better resources. Your contribution to maintain this
                 project is highly valued in our community.</p>
         </div>
 
