@@ -2,7 +2,6 @@
 /bin
 /Properties/launchSettings.json
 appsettings.json
-learnify.csproj
 .fake
 ./Migrations/*
 /Migrations

@@ -7,6 +7,6 @@
 2. <del> Admin Actions - Delete User, delete user uploaded contents + all user actions</del>
 
 3. <del>* Handle form input error in user registration</del>
-
+4. add confirm password validation, client side
 
 **Please Feel free to add new features or  requirements that you wish or would make this project better in this list.**
