@@ -5,6 +5,3 @@
 setTimeout(function () {
     document.getElementById('alert-dialog').style.display = 'none';
 }, 3000);
-
-const firstPassForm = document.getElementById("password");
-const secondPassForm = document.getElementById("confirm-password");
