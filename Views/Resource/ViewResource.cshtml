@@ -41,7 +41,7 @@
                     </button>
                     <div class="tags col-7" >
                         @{#pragma warning disable}
-                        @foreach(var tag in resource.Tags)
+                        @foreach(var tag in resource.Tags.Split(","))
                         {
                             <div class="btn px-2 py-1 border text-align-center bg-none border-danger rounded-pill m-autos text-black">
                                 <p class="m-auto fw-medium">@tag</p>
