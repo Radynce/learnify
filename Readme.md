@@ -53,7 +53,7 @@ Before you begin, ensure that you have the following installed on your machine:
     dotnet run
     ```
 
-6. Open your web browser and navigate to [http://localhost:8080](http://localhost:5000)  or any port you specified to view the application.
+6. Open your web browser and navigate to [http://localhost:5000](http://localhost:5000)  or any port you specified to view the application.
 
 ## Additional Notes
 
