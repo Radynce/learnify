@@ -1,7 +1,6 @@
 /obj
 /bin
 /Properties/launchSettings.json
-appsettings.json
 .fake
 ./Migrations/*
 /Migrations
